@@ -41,6 +41,12 @@ def randomize_sudoku(sudoku, seed=123):
     rows_new = row1+row2+row3
     sudoku_new = [rows_new[i//9][i%9] for i in range(81)]
     
+    # transposition:
+    if random.randint(0, 1)==0:
+        for i in range(1, 9):
+            for j in range(i+1, 9):
+                sudoku_new[i*9+j], sudoku_new[j*9+i] = sudoku_new[j*9+i], sudoku_new[i*9+j]
+    
     return sudoku_new
 
 def draw_sudoku(img, sudoku, x, y, seed=None):
