@@ -15,36 +15,36 @@ def randomize_sudoku(sudoku, seed=123):
     
     # shuffling boxes
     # box columns
-    box_cols = [[[sudoku_new[i*3+j*9+k] for k in range(3)] for j in range(9)] for i in range(3)]
-    random.shuffle(box_cols)
-    sudoku_new = [box_cols[(i//3)%3][i//9][i%3] for i in range(81)] 
-    # box rows
-    box_rows = [[[sudoku_new[i*27+j*9+k] for k in range(9)] for j in range(3)] for i in range(3)]
-    random.shuffle(box_rows)
-    sudoku_new = [box_rows[i//27][(i//9)%3][i%9] for i in range(81)]
+#     box_cols = [[[sudoku_new[i*3+j*9+k] for k in range(3)] for j in range(9)] for i in range(3)]
+#     random.shuffle(box_cols)
+#     sudoku_new = [box_cols[(i//3)%3][i//9][i%3] for i in range(81)] 
+#     # box rows
+#     box_rows = [[[sudoku_new[i*27+j*9+k] for k in range(9)] for j in range(3)] for i in range(3)]
+#     random.shuffle(box_rows)
+#     sudoku_new = [box_rows[i//27][(i//9)%3][i%9] for i in range(81)]
     
-    # shuffling lines
-    # columns
-    columns = [[sudoku_new[i+j*9] for j in range(9)] for i in range(9)]
-    col1, col2, col3 = columns[:3], columns[3:6], columns[6:]
-    random.shuffle(col1)
-    random.shuffle(col2)
-    random.shuffle(col3)
-    columns_new = col1+col2+col3
-    sudoku_new = [columns_new[i%9][i//9] for i in range(81)]
-    # rows
-    rows = [[sudoku_new[i*9+j] for j in range(9)] for i in range(9)]
-    row1, row2, row3 = rows[:3], rows[3:6], rows[6:]
-    random.shuffle(row1)
-    random.shuffle(row2)
-    random.shuffle(row3)
-    rows_new = row1+row2+row3
-    sudoku_new = [rows_new[i//9][i%9] for i in range(81)]
+#     # shuffling lines
+#     # columns
+#     columns = [[sudoku_new[i+j*9] for j in range(9)] for i in range(9)]
+#     col1, col2, col3 = columns[:3], columns[3:6], columns[6:]
+#     random.shuffle(col1)
+#     random.shuffle(col2)
+#     random.shuffle(col3)
+#     columns_new = col1+col2+col3
+#     sudoku_new = [columns_new[i%9][i//9] for i in range(81)]
+#     # rows
+#     rows = [[sudoku_new[i*9+j] for j in range(9)] for i in range(9)]
+#     row1, row2, row3 = rows[:3], rows[3:6], rows[6:]
+#     random.shuffle(row1)
+#     random.shuffle(row2)
+#     random.shuffle(row3)
+#     rows_new = row1+row2+row3
+#     sudoku_new = [rows_new[i//9][i%9] for i in range(81)]
     
     # transposition:
     if random.randint(0, 1)==0:
         for i in range(1, 9):
-            for j in range(i+1, 9):
+            for j in range(0, i):
                 sudoku_new[i*9+j], sudoku_new[j*9+i] = sudoku_new[j*9+i], sudoku_new[i*9+j]
     
     return sudoku_new
